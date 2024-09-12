@@ -17,9 +17,9 @@ In order to identify the nuclei, the pixels are first thresholded, creating a bi
 
 ![next_steps](https://github.com/user-attachments/assets/1fb6cf26-e693-4714-b0e5-f51a80742043)
 
-> Currently, a 1 represents a pixel which in the original image has a 'green' value greater than 210.
+> A binary mask, silhouetting regions of interest in the color image above
 
-There are better ways to create the binary mask I have considered, including using color spaces to increase the consistency and precision with which the nuclear coloration can be identified, and training a classifier using test images to identify the pixels that correspond to nuclei, so far I haven't had the time to implement these.
+Currently, a 1 represents a pixel which in the original image has a 'green' value greater than 210. There are better ways to create the binary mask I have considered, including using color spaces to increase the consistency and precision with which the nuclear coloration can be identified, and training a classifier using test images to identify the pixels that correspond to nuclei, so far I haven't had the time to implement these.
 
 The binary mask generation process isn't perfect, so a single cell may result in many fragmented pieces of the cell (a broken silhouette). Depending on the image, the fragmentation can be pretty extreme.
 

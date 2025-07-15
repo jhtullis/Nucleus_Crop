@@ -8,8 +8,7 @@ from os import path
 from os.path import isfile, join
 
 def default_mask(image):
-    """Returns the mask of an image to identify the cell nuclei.
-    The best foolproof method I have found is to restrict green > 210"""
+    """Returns the mask of an image to identify the cell nuclei."""
 
     # Set the range of colors that we will interpret as "stained nuclei"
     #   feel free to experiment with these values
@@ -18,7 +17,6 @@ def default_mask(image):
     #   However, there is simply not much green in the nuclei compared 
     #   to everything else, so filtering out parts with very much green
     # is very helpful
-    # lower_bound_stain = np.array([0, 210, 0])
 
     # colors in cv2 follow the Blue, Green, Red order
 
@@ -32,13 +30,14 @@ def default_mask(image):
 
     # compute and return the mask
 
-    # first find the values in the image that are within this range and make them all
-    #   255, and turn everything else to 0.
+    # this line of code finds the pixels in the image that are within this range and
+    #   returns a single layer image with values of 255 corresponding
+    #   to pixels that passed the threshold and values of 0 corresponding
+    #   to pixels that failed
     image = cv2.inRange(image, lower_bound_stain, upper_bound_stain)
 
-    # Then turn the image from greyscale to binary
-    #   It is stored as a greyscale image but we need it in binary instead
-    #   take anything greater than 127 and less than 255 as a 1
+    # this mask needs to be converted to binary using another thresholding operation
+    #   take anything greater than 127 and less than or equal to 255 as a 1
     #   we only to the thing in position 1 of the list that is returned by 
     #   cv2.threshold.
     return cv2.threshold(image, 127, 255, cv2.IMREAD_GRAYSCALE)[1]

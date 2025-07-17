@@ -5,6 +5,9 @@
 
 > This GitHub repo and [Blast_Classification](https://github.com/jhtullis/Blast_Classification) accompany "Distinguishing Reactive Lymphocytes from Blasts Using Fractal Chromatin Patterns" by R. Cordner et al, under review by the *International Journal of Laboratory Hematology* as of May 2025.
 
+## Notice
+
+This is the dev branch. The information on this page may not be up-to-date
 
 ## Introduction and Motivations
 

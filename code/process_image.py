@@ -3,7 +3,7 @@
 # 6-28-24
 import numpy as np
 import cv2
-from cullensun_cluster import agglomerative_cluster
+from .cullensun_cluster import agglomerative_cluster
 from os import path
 from os.path import isfile, join
 

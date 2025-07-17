@@ -17,7 +17,7 @@ from os.path import isfile, join
 #   process_image.py should be a file in the same folder as main.py
 #   I will put the code in there that actually does the analysis
 #   to keep this file from becoming too cluttered.
-import process_image as myimg
+import code.process_image as myimg
 
 # matplotlib:
 #   Could be used to visualize images as part of the program,
@@ -27,12 +27,13 @@ import process_image as myimg
 # ---- User Defined Variables ----
 
 # filepaths:
+#   TODO: update instructions for use with join
 #   Copy the filepath (with \\ as the delimiter for Windows) 
 #   to your input files folder using the file explorer
 #   and paste it inside the quotes for each directory.
-indir = "my_input_images"
-outdir_crop = "my_output_crop"
-outdir_box = "my_output_box"
+indir = join("input-output-images", "my_input_images")
+outdir_crop = join("input-output-images", "my_output_crop")
+outdir_box = join("input-output-images", "my_output_box")
 
 # create a list of all image file names in the input folder
 #   *Right now, we are assuming that this folder only contains image files*

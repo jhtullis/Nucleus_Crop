@@ -6,6 +6,8 @@ import cv2
 from .cullensun_cluster import agglomerative_cluster
 from os import path
 from os.path import isfile, join
+import joblib
+
 
 def default_mask(image):
     """Returns the mask of an image to identify the cell nuclei."""
@@ -41,6 +43,25 @@ def default_mask(image):
     #   we only to the thing in position 1 of the list that is returned by 
     #   cv2.threshold.
     return cv2.threshold(image, 127, 255, cv2.IMREAD_GRAYSCALE)[1]
+
+def trained_mask_dev(image, threshold=0.995):
+    """Returns the mask of an image to identify the cell nuclei. In development. Uses a trained pixel classifier."""
+    # Some assistance from Chat GPT
+    # Load model
+    target_class = "nucleus"
+    model_path = f"dev/pixel_classifier_{target_class}.joblib"
+    model = joblib.load(model_path)
+
+    # Flatten pixels
+    img_bgr = image
+    img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
+    h, w, _ = img_rgb.shape
+    pixels = img_rgb.reshape(-1, 3)
+
+    # predict, threshold, reshape and return
+    probs = model.predict_proba(pixels)[:, 1]
+    mask = (probs > threshold).astype(np.uint8).reshape(h, w) * 255
+    return mask
 
 def print_data_info(image, image_name = None, stats=True):
     """Prints info about the numpy array holding the image information,

@@ -35,6 +35,11 @@ indir = join("input-output-images", "my_input_images")
 outdir_crop = join("input-output-images", "my_output_crop")
 outdir_box = join("input-output-images", "my_output_box")
 
+# mask type:
+#   TODO: select whether you would like to use the
+#   default mask or the mask in development
+dev_mask = True
+
 # create a list of all image file names in the input folder
 #   *Right now, we are assuming that this folder only contains image files*
 #   Help from: https://stackoverflow.com/questions/3207219/how-do-i-list-all-files-of-a-directory
@@ -54,7 +59,10 @@ for imgname in filepaths:
 
     # find the image mask - basically, the pixels that we think are stained
     print("...Masking")
-    mask = myimg.default_mask(image)
+    if dev_mask:
+        mask = myimg.trained_mask_dev(image)
+    else:
+        mask = myimg.default_mask(image)
 
     # find the rectangles that we want to crop out of the image
     print("...Identifying cells")

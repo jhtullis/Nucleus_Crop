@@ -1,1 +1,6 @@
 /code/__pycache__
+/.venv
+/dev/eos_masks
+/dev/eos_labeled_crops
+/dev/eos
+/dev/__pycache__

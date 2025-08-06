@@ -7,7 +7,9 @@
 
 ## Notice
 
-This is the dev branch. The information on this page may not be up-to-date
+This is the dev branch. The information on this page may not be up-to-date.
+
+Chat GPT was utilized to write some of the code on this branch.
 
 ## Introduction and Motivations
 
